@@ -1,37 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AddUrl,Home } from './pages';
+import { Navbar,Footer } from './components';
 
 function App() {
-  useEffect(() => {
-    fetch('http://localhost:3000')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Can´t connect');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data)
-      })
-  }, []);
-   
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add" element={<AddUrl/>}/>
+        </Routes>
+      
+      <Footer/>
     </div>
   );
 }
